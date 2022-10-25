@@ -1,0 +1,153 @@
+body {
+    margin-top: 20px;
+}
+
+
+/*==================================================
+  Post Contents CSS
+  ==================================================*/
+
+.post-content {
+    background: #f8f8f8;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #f1f2f2;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.post-content img.post-image,
+video.post-video,
+.google-maps {
+    width: 100%;
+    height: 50%;
+}
+
+.post-content .google-maps .map {
+    height: 300px;
+}
+
+.post-content .post-container {
+    padding: 20px;
+}
+
+.post-content .post-container .post-detail {
+    margin-left: 65px;
+    position: relative;
+}
+
+.post-content .post-container .post-detail .post-text {
+    line-height: 24px;
+    margin: 0;
+}
+
+.post-content .post-container .post-detail .reaction {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.reaction2 {
+    position: absolute;
+    left: 70px;
+    bottom: 0;
+}
+
+.names {
+    position: absolute;
+    right: 0;
+    top: 10;
+}
+
+.post-content .post-container .post-detail .post-comment {
+    display: inline-flex;
+    margin: 10px auto;
+    width: 100%;
+}
+
+.post-content .post-container .post-detail .post-comment img.profile-photo-sm {
+    margin-right: 10px;
+}
+
+.post-content .post-container .post-detail .post-comment .form-control {
+    height: 30px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    margin: 7px 0;
+    min-width: 0;
+}
+
+img.profile-photo-md {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+img.profile-photo-sm {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.text-green {
+    color: #8dc63f;
+}
+
+.text-red {
+    color: #ef4136;
+}
+
+.following {
+    color: #8dc63f;
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+body {
+    background-color: #eee
+}
+
+.bdge {
+    height: 21px;
+    background-color: orange;
+    color: #fff;
+    font-size: 11px;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 3px
+}
+
+.comments {
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    margin-top: 3px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.hit-voting:hover {
+    color: blue
+}
+
+.hit-voting {
+    cursor: pointer
+}
+
+.modal-dialog {
+    top: 7rem !important;
+}
+
+.replies-control {
+    color: #8dc63f;
+    font-size: 12px;
+    margin-left: 20px;
+    cursor: pointer;
+}
