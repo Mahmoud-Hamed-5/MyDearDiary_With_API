@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Facades\File;
 
 
 class PostController extends Controller
@@ -85,7 +86,7 @@ class PostController extends Controller
         if ($post === null) {
             return redirect()->back();
         }
-        return view('posts.edit',$post);
+        return view('posts.edit')->with('post', $post);
     }
 
     public function update(Request $request, $id)
@@ -94,21 +95,27 @@ class PostController extends Controller
         $this->validate($request,[
             'title' => 'required',
             'content' => 'required',
-            'photo' => 'required|image'
+            //'photo' => 'required|image'
         ]);
 
+        $oldPhoto = $post->photo;
+        $newPhoto = null;
         if($request->has('photo'))
         {
             $photo = $request->photo;
             $newPhoto = time().$photo->getClientOriginalName();
             $photo->move('uploads/posts',$newPhoto);
-            $post->photo = 'uploads/posts/'.$newPhoto;
+            //$post->photo = 'uploads/posts/'.$newPhoto;
+            File::delete($oldPhoto);
         }
 
+        $photoStore = $newPhoto == null ? $oldPhoto : 'uploads/posts/'.$newPhoto;
+
         $post->title = $request->title;
-        $post->title = Str::slug($request->title);
+        $post->slug = SlugService::createSlug('App\Models\Post', 'slug', $request->title);
         $post->content = $request->content;
-        $post->save;
+        $post->photo = $photoStore;
+        $post->save();
 
         return redirect()->back();
     }
@@ -123,7 +130,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return redirect()->back();
+        return redirect()->route('posts');
     }
 
     public function hdelete($post_id)

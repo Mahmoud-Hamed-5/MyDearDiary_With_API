@@ -13,8 +13,9 @@
             <div class="col">
                 <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
+
                     <div class="form-group">
-                      <label for="exampleFormControlInput1">Title</label>
+                      <label for="title">Title</label>
                       <input type="text" name="title" >
                     </div>
                     <div class="form-group">
@@ -42,7 +43,7 @@
 
 <div class="container" >
     <a href="{{route('posts.trashed')}}">Trashed posts</a>
-    <p id="test"> </p>
+    <p id="showTime"> </p>
     <div class="row">
         <div class="col-md-8">
 
@@ -199,15 +200,15 @@ aria-hidden="true">
 </div>
 
 <script>
-    function tim(){
+    function time(){
         var now = new Date();
    //     var mm = now.getYear();
        var h = now.getHours();
        var m = now.getMinutes();
        var s = now.getSeconds();
-        document.getElementById("test").innerHTML = "" + h + ":" + m + ":" + s ;
+        document.getElementById("showTime").innerHTML = "" + h + ":" + m + ":" + s ;
     }
-    setInterval(() => { tim() } , 1000);
+    setInterval(() => { time() } , 1000);
 </script>
 
 @endsection

@@ -3,11 +3,12 @@
 @section('content')
 <head>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<script src="js\myjs.js"></script>
+
 </head>
 
 <div class="container" >
     <a href="{{route('posts')}}">All posts</a>
+    <p id="showTime"> </p>
     <div class="row">
         <div class="col-md-8">
 
@@ -80,30 +81,31 @@
                     <div class="line-divider"></div>
                   @endif
 
+                  {{-- open small modal to show likes --}}
                   <div style="margin-top: 10px" >
+                    <a data-toggle="modal" id="smallButton" data-target="#smallModal" title="show likes">
                       <span class="text-info" style="cursor: pointer"
-                         {{-- onclick="show2({{$post->id}} , {{$n}})" --}}
-                         onclick="showLikes()"
-                         onmouseout="hide({{$n}})">
+                            onclick="showLikes({{$post->id}})">
                         <i id={{$counter_id}} class="fa fa-thumbs-up"> {{$post->likes}}</i>
                       </span>
+                    </a>
                   </div>
 
 
-<div style="margin-top: 10px">
-                  <button type="button"
-                            onclick="like({{$post->id}} , {{$c}} , {{$b}})">
-                            @if ($post->isliked($post->id))
-                                <span class="text-warning">
-                                <i id={{$button_id}} class="fa-regular fa-2x fa-thumbs-down"></i>
-                                </span>
-                            @else
-                                <span class="text-success">
-                                <i id={{$button_id}} class="fa-regular fa-2x fa-thumbs-up"></i>
-                                </span>
-                            @endif
-                    </button>
-</div>
+                <div style="margin-top: 10px">
+                    <button type="button"
+                              onclick="like({{$post->id}} , '{{$counter_id}}' , {{$b}})">
+                              @if ($post->isliked($post->id))
+                                  <span class="text-warning" title="unlike">
+                                  <i id={{$button_id}} class="fa-regular fa-2x fa-thumbs-down"></i>
+                                  </span>
+                              @else
+                                  <span class="text-success" title="like">
+                                  <i id={{$button_id}} class="fa-regular fa-2x fa-thumbs-up"></i>
+                                  </span>
+                              @endif
+                      </button>
+                </div>
 
 <hr>
 
@@ -134,8 +136,38 @@
 
             </div>
         </div>
-    </div>
 </div>
 
+<!-- small modal -->
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="smallModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Likes</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" id="smallBody">
+            <div>
+                <!-- the result to be displayed apply here -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function time(){
+        var now = new Date();
+   //     var mm = now.getYear();
+       var h = now.getHours();
+       var m = now.getMinutes();
+       var s = now.getSeconds();
+        document.getElementById("showTime").innerHTML = "" + h + ":" + m + ":" + s ;
+    }
+    setInterval(() => { time() } , 1000);
+</script>
 
 @endsection

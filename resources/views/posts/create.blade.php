@@ -28,10 +28,12 @@
       <div class="col">
         <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            
             <div class="form-group">
               <label for="exampleFormControlInput1">Title</label>
               <input type="text" class="form-control" name="title" >
             </div>
+
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Content</label>
               <textarea class="form-control" name="content" rows="3"></textarea>
